@@ -33,13 +33,14 @@ game = Ray.game('Hello') do
     scene(:hello) do
         @text = text("Hello, world!", {:size => 50, :at => [50, 50]})
 
-        @obj = Ray::Polygon.rectangle([-50, -50, 100, 100], Ray::Color.blue())
+        @obj = Ray::Polygon.rectangle([50, -50, 100, 100], Ray::Color.blue())
+        @obj = Ray::Polygon.circle([0, 0], 30, Ray::Color.green)
         @obj.pos = [100, 350] # starting position
 
         on(:mouse_motion) do |pos|
             Kernel.puts pos.x
             @obj.pos = pos
-            @obj.color = Ray::Color.new(pos.x, pos.y,0)
+            @obj.color = Ray::Color.new(pos.x, pos.y, pos.x + pos.y)
 
         end
 
